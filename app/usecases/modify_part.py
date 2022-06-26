@@ -1,3 +1,64 @@
+def enlarge_sentence(sentence: list, length: int) -> list:
+    sentence_list = []
+    for i in sentence:
+        for _ in range(length):
+            sentence_list.append(i)
+    return sentence_list
+
+def similarly_score(motion, music):
+    plus_point = 1
+    minus_point = 0
+    score_list = []
+    for i in range(len(motion)):
+        if motion[i]==1 and music[i]==1:
+            score_list.append(plus_point)
+        elif motion[i]==0 and music[i]==0:
+            score_list.append(0)
+        elif motion[i] != music[i]:
+            score_list.append(0)
+    return score_list
+
+def similary_press_score(motion, music, length):
+    score_sentence = similarly_score(motion, music)
+    score_sum = 0
+    press_score_list = []
+    for i in range(len(score_sentence)):
+        score_sum += score_sentence[i]
+        if i % length == length-1:
+            press_score_list.append(score_sum)
+            score_sum = 0
+    return press_score_list
+
+def estimated_concious_of_music_part(vocals, melody, drums):
+#     vocals.insert(0,"ボーカル")
+#     melody.insert(0, "メロディ")
+#     drums.insert(0, "ドラム")
+    estimated_concious_of_music_part = []
+    for i in range(len(vocals)):
+        max_score_part = []
+        max_score = max(vocals[i], melody[i], drums[i])
+#         print(max_score)
+        if max_score == 0:
+            max_score_part.append("なし")
+            max_score += 1
+        if max_score == vocals[i]:
+            max_score_part.append("ボーカル")
+        if max_score == melody[i]:
+            max_score_part.append("メロディ")
+        if max_score == drums[i]:
+            max_score_part.append("ドラム")
+        estimated_concious_of_music_part.append(max_score_part)
+    return estimated_concious_of_music_part
+
+def estimated_accuracy(estimated_concious_of_music_part,concious_of_music_part):
+    count_accuracy_part = 0
+    for i in range(len(estimated_concious_of_music_part)):
+        if len(set(concious_of_music_part[i]) & set(estimated_concious_of_music_part[i]))>0:
+            count_accuracy_part += 1
+    estimated_accuracy = float(count_accuracy_part* 100 // len(concious_of_music_part) )
+    return estimated_accuracy
+
+
 def make_concious_part(length, dimension):
     concious_part = []
     if dimension == "one":
@@ -252,7 +313,19 @@ def sum_four_counts(partname_list):
     return body_concious_partname_list
 
 
+def to_int(parts: list):
+    int_list = []
+    for part in parts:
+        if part == ['ボーカル']:
+            int_list.append(3)
+        elif part == ['メロディ']:
+            int_list.append(2)
+        elif part == ['ドラム']:
+            int_list.append(1)
+        elif part == ['None']:
+            int_list.append(0)
 
+    return int_list
 
 
 

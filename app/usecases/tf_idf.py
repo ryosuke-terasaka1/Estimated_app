@@ -22,10 +22,10 @@
 #     idf = math.log(float(len(tf_list) / one_count)) + 1
 #     print(idf)
 #     [tf_idf.append(tf_value*idf) for tf_value in tf_list]
-    
+
 #     for n in range(len(tf_idf)):
 #         result.append(float(tf_idf[n] * body_music_lists[n]))
-    
+
 #     return result
 
 def tf_idf(body_part_melodys, body_part_drums, body_part_vocals):
@@ -33,9 +33,9 @@ def tf_idf(body_part_melodys, body_part_drums, body_part_vocals):
     drum_idf = sum(body_part_drums)
     vocal_idf = sum(body_part_vocals)
     tfidf_part = []
-    
+
     i = 0
-    while i < (len(body_part_melodys)-7):
+    while i < (len(body_part_melodys) - 7):
         tf = 0
         melody_tf = 0
         drum_tf = 0
@@ -51,7 +51,7 @@ def tf_idf(body_part_melodys, body_part_drums, body_part_vocals):
         vocal_tfidf = float(vocal_tf / vocal_idf)
 
         max_score = max(melody_tfidf, drum_tfidf, vocal_tfidf)
-#             print(max_score)
+        #             print(max_score)
         if max_score == 0:
             max_score_part.append("なし")
         elif max_score == vocal_tfidf:
@@ -60,25 +60,22 @@ def tf_idf(body_part_melodys, body_part_drums, body_part_vocals):
             max_score_part.append("メロディ")
         elif max_score == drum_tfidf:
             max_score_part.append("ドラム")
-        
+
         tfidf_part.append(max_score_part)
         i += 8
-        
+
     return tfidf_part
-    
-    
-    
 
 
 def tf_idf_four_counts(partvalue_list, length):
     i = 0
     four_counts_partvalue_list = []
-    while i < (len(partvalue_list)-length+1):
-            partlist = []
-            sum_score = 0
-            for j in range(length):
-                sum_score += partvalue_list[i + j]
-            four_counts_partvalue_list.append(sum_score)
-            i += length
-  
-    return four_counts_partvalue_lis
+    while i < (len(partvalue_list) - length + 1):
+        partlist = []
+        sum_score = 0
+        for j in range(length):
+            sum_score += partvalue_list[i + j]
+        four_counts_partvalue_list.append(sum_score)
+        i += length
+
+    return four_counts_partvalue_list

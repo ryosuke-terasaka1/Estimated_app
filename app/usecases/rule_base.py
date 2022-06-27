@@ -74,7 +74,7 @@ def one_dimension_rulebase_sum(vocal, melody, drum, start, length, interval):
     return rule_base_result
     
     
-def toshi_rulebase_func(vocal, melody, drum):    
+def ideal_rulebase_func(vocal, melody, drum):
     ans=[]
 #     ans += one_dimension_rulebase_sum(vocal, melody, drum, 0, 32, 8)
 #     ans += one_dimension_rulebase_sum(vocal, melody, drum, 32, 4, 4)

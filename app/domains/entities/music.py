@@ -1,10 +1,15 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
+from app.domains.entities.file_name import MusicFile
 
-class Music(BaseModel):
-    name: str
 
-class MusicOnset(Music):
+class MusicOnset(MusicFile):
+    Music_count_length: int  # UWW: 96  toshi: 90
+    Music_half_count_length: int = Music_count_length * 2
+    Music_quarter_count_length: int = Music_count_length * 4
+    Offset: int  # UWW: 10  toshi: 140
+    Duration: int  # UWW: 65  toshi: 60
     drum: List[int]
     vocal: List[int]
     melody: List[int]
+    edit_command_lists: Optional[List[List[int]]]  # [[start, end, interval]]

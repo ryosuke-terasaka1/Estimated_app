@@ -7,17 +7,19 @@ from typing import Optional, List
 
 class DancerBase(BaseModel):
     name: Optional[str]
+    data: pd.DataFrame
+    start_timing: int
 
 
 class DancerAccel(DancerBase):
-    accel_data: pd.DataFrame
+    data: pd.DataFrame
+    start_timing: int
     right_hand: List[int]
     left_hand: List[int]
     right_foot: List[int]
     left_foot: List[int]
 
 class DancerKinect(DancerBase):
-    kinect_data: pd.DataFrame
     right_elbow: List[int]
     left_elbow: List[int]
     right_knee: List[int]

@@ -5,7 +5,7 @@ import pandas as pd
 from pydantic import BaseModel
 from typing import Optional, List
 
-class DancerBase(BaseModel):
+class DancerBase(object):
     name: Optional[str]
     data: pd.DataFrame
     start_timing: int

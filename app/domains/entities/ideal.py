@@ -3,7 +3,7 @@ from pydantic import BaseModel
 import pandas as pd
 
 
-class IdealDataCreate(BaseModel):
+class IdealDataCreate(object):
     Csv_name: str
     Csv_data: pd.DataFrame
     Similarly_vocal: List[int]

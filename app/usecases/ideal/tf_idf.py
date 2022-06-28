@@ -43,9 +43,7 @@ def ideal_tf_idf_func(dancer: IdealData, onset: MusicOnset):
     for edit_command in onset.edit_command_lists:
         start, length, interval = edit_command[0], edit_command[1], edit_command[2]
         ans += one_dimension_tfidf(dancer.Similarly_vocal, dancer.Similarly_melody, dancer.Similarly_drum, start, length, interval)
-    #     ans += one_dimension_tfidf(vocal, melody, drum, 0, 32, 8)
-    #     ans += one_dimension_tfidf(vocal, melody, drum, 32, 4, 4)
-    if dancer.Csv_data == "app/drivers/input/move/ideal_data/csv_data/uww2021_ideal_data.csv":
+    if dancer.Csv_data == "drivers/input/move/ideal_data/csv_data/uww2021_ideal_data.csv":
         ans = ans[:-3]
 
 
